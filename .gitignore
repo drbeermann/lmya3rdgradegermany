@@ -1,0 +1,15 @@
+dist/
+node_modules/
+.DS_Store
+.env.local
+
+# Reference material that should not be published in a public repo:
+# the Transatlantic curriculum is licensed to LMYA only, and the schedule
+# spreadsheet may contain family contact info. The House Rules PDF is public
+# and is served by the site, so it stays.
+docs/*
+!docs/LMYA-House-Rules-2026.pdf
+!docs/germany_schedule.ics
+
+# Local tooling
+.claude/

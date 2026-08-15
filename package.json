@@ -1,0 +1,19 @@
+{
+  "name": "lmya-germany-3rd",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Season site for LMYA 3rd grade Germany — weekly practice plans, drill progressions, games, at-home challenges, and rules.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node --watch-path=src --watch-path=build.mjs build.mjs",
+    "serve": "node serve.mjs",
+    "dev": "npm run build && (npm run watch & npm run serve)",
+    "check": "node build.mjs --check",
+    "schedule:refresh": "node refresh-schedule.mjs",
+    "release": "node refresh-schedule.mjs && node build.mjs"
+  }
+}

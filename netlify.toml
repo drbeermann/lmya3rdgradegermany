@@ -1,0 +1,19 @@
+# Netlify (or any host that runs a build command): free tier is plenty.
+# Set SCHEDULE_ICS_URL in the site's environment variables to pull the live
+# league schedule at build time; schedule a daily build hook to keep it fresh.
+[build]
+  command = "node refresh-schedule.mjs && node build.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

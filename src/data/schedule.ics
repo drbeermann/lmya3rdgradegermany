@@ -1,0 +1,195 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//LeagueApps//3rd Grade Boys//EN
+NAME:3rd Grade Boys
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-WR-CALNAME:3rd Grade Boys
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260820T010000Z
+DTEND:20260820T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001812026-08-15T22:23:45.076988267Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600181#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260822T153000Z
+DTEND:20260822T164500Z
+SUMMARY:Canada vs. Germany (3rd Grade Boys)
+UID:136276112026-08-15T22:23:45.077023815Z@leagueapps
+LOCATION:Lafayette Elementary (Field #1)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13627611#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260827T010000Z
+DTEND:20260827T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001822026-08-15T22:23:45.077039848Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600182#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260829T180000Z
+DTEND:20260829T191500Z
+SUMMARY:Germany vs. USA (3rd Grade Boys)
+UID:136276202026-08-15T22:23:45.077054346Z@leagueapps
+LOCATION:Burton Valley School (Front Field #1)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13627620#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89506
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260903T010000Z
+DTEND:20260903T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001832026-08-15T22:23:45.077065527Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600183#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260910T010000Z
+DTEND:20260910T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001842026-08-15T22:23:45.077075394Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600184#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260912T180000Z
+DTEND:20260912T191500Z
+SUMMARY:Germany vs. Japan (3rd Grade Boys)
+UID:136276252026-08-15T22:23:45.077087552Z@leagueapps
+LOCATION:Burton Valley School (Front Field #1)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13627625#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89506
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260917T010000Z
+DTEND:20260917T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001852026-08-15T22:23:45.077097568Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600185#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260919T153000Z
+DTEND:20260919T164500Z
+SUMMARY:Mexico vs. Germany (3rd Grade Boys)
+UID:136276272026-08-15T22:23:45.077108514Z@leagueapps
+LOCATION:Lafayette Elementary (Field #1)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13627627#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260924T010000Z
+DTEND:20260924T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001862026-08-15T22:23:45.077117830Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600186#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20260926T153000Z
+DTEND:20260926T164500Z
+SUMMARY:Germany vs. France (3rd Grade Boys)
+UID:136276322026-08-15T22:23:45.077128655Z@leagueapps
+LOCATION:Lafayette Elementary (Field #1)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13627632#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20261001T010000Z
+DTEND:20261001T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001872026-08-15T22:23:45.077138373Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600187#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20261003T180000Z
+DTEND:20261003T191500Z
+SUMMARY:Argentina vs. Germany (3rd Grade Boys)
+UID:136276402026-08-15T22:23:45.077150217Z@leagueapps
+LOCATION:Burton Valley School (Front Field #1)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13627640#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89506
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20261008T010000Z
+DTEND:20261008T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001882026-08-15T22:23:45.077169792Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600188#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20261010T180000Z
+DTEND:20261010T191500Z
+SUMMARY:Germany vs. England (3rd Grade Boys)
+UID:136276452026-08-15T22:23:45.077180701Z@leagueapps
+LOCATION:Burton Valley School (Front Field #1)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13627645#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89506
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20261015T010000Z
+DTEND:20261015T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001892026-08-15T22:23:45.077189724Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600189#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260814T185518Z
+DTSTART:20261022T010000Z
+DTEND:20261022T020000Z
+SUMMARY:3rd Grade Boys Soccer Practice (3rd Grade Boys)
+UID:136001902026-08-15T22:23:45.077205379Z@leagueapps
+LOCATION:Lafayette Elementary (Field #2)
+DESCRIPTION:RSVP Here: http://lmyasports.leagueapps.com/app/leagues/5001298
+	/schedule/activities/13600190#rsvp\nGet Directions: http://lmyasports.leag
+	ueapps.com/location/89503
+END:VEVENT
+END:VCALENDAR
