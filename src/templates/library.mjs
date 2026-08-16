@@ -273,7 +273,7 @@ export function schedulePage({ rel }) {
         : '<li class="ev ev-none"><span>Nothing on the league schedule this week.</span></li>';
       const noGame = !c.game ? (c.notes.find((n) => /no games/i.test(n)) ? `<li class="ev ev-none"><span>${icon('flag')} No games — Labor Day weekend</span></li>` : `<li class="ev ev-none"><span>${icon('flag')} Game not on the league schedule yet</span></li>`) : '';
       const notes = c.notes.filter((n) => !/no games/i.test(n));
-      return `<article class="sched-week" data-week="${c.n}" data-start="${c.start}" data-end="${c.end}">
+      return `<article class="sched-week" id="week-${c.n}" data-week="${c.n}" data-start="${c.start}" data-end="${c.end}">
         <header class="sched-head">
           <a class="sched-title" href="${rel}weeks/${c.n}/"><span class="wk-n">Week ${c.n}</span> <span class="sched-theme">${esc(w.theme)}</span></a>
           <span class="sched-dates">${fmtRange(c.start, c.end)}</span>

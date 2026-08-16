@@ -52,10 +52,10 @@ if (dataEl) {
   if (plan) {
     plan.innerHTML = `
       <div class="hp-goals"><span class="hp-k">This week we're working on</span><ul class="hp-goal-list">${wk.goals.map((g) => `<li>${esc(g)}</li>`).join('')}</ul></div>
-      <div class="hp-col"><span class="hp-k">Drills</span>${wk.drills.map((d) => `<span class="hp-v">${esc(d)}</span>`).join('')}</div>
-      <div class="hp-col"><span class="hp-k">Games</span>${wk.games.map((d) => `<span class="hp-v">${esc(d)}</span>`).join('')}</div>
-      <div class="hp-col"><span class="hp-k">Scrimmage</span><span class="hp-v">${esc(wk.scrimmage)}</span></div>
-      <div class="hp-col"><span class="hp-k">At home</span><span class="hp-v">${wk.homeIcon} ${esc(wk.home)}</span></div>`;
+      <div class="hp-col"><span class="hp-k">Drills</span>${wk.drills.map((d) => `<a class="hp-v" href="${esc(d.href)}">${esc(d.title)}</a>`).join('')}</div>
+      <div class="hp-col"><span class="hp-k">Games</span>${wk.games.map((d) => `<a class="hp-v" href="${esc(d.href)}">${esc(d.title)}</a>`).join('')}</div>
+      <div class="hp-col"><span class="hp-k">Scrimmage</span><a class="hp-v" href="${esc(wk.scrimmage.href)}">${esc(wk.scrimmage.title)}</a></div>
+      <div class="hp-col"><span class="hp-k">At home</span><a class="hp-v" href="${esc(wk.homeHref)}">${wk.homeIcon} ${esc(wk.home)}</a></div>`;
   }
   const slot = document.getElementById('home-challenge-slot');
   if (slot) {

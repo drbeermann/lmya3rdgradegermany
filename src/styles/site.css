@@ -31,8 +31,9 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--topbar-h) + 12px); }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+/* Instant jumps (not smooth): activity links often travel thousands of pixels or across pages. */
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--topbar-h) + 12px); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -152,6 +153,8 @@ h4 { font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spa
 .hp-col { background: rgba(10, 10, 10, 0.55); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.25rem; }
 .hp-k { font: 700 0.75rem var(--font-body); text-transform: uppercase; letter-spacing: 0.12em; color: var(--red); margin-bottom: 0.2rem; }
 .hp-v { font: 600 1.05rem var(--font-display); color: #fff; line-height: 1.15; }
+a.hp-v { text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.25); align-self: flex-start; }
+a.hp-v:hover { color: #fff; border-bottom-color: var(--red); }
 .hero-crest { position: absolute; right: -40px; bottom: -70px; opacity: 0.09; color: #fff; pointer-events: none; z-index: 0; }
 @media (max-width: 899px) { .hero-crest { right: -90px; bottom: -110px; } }
 
@@ -184,6 +187,13 @@ h4 { font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spa
 /* ---------- week cards ---------- */
 .wk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.9rem; margin-top: 1rem; }
 .wk-card { position: relative; display: flex; flex-direction: column; gap: 0.15rem; padding: 1rem 1.1rem 1.1rem; background: var(--white); border: 1px solid var(--silver-2); border-radius: var(--radius); text-decoration: none; box-shadow: var(--shadow); transition: transform 0.12s ease, border-color 0.12s ease; overflow: hidden; }
+/* The theme is the card's main link, stretched over the whole card; the
+   smaller links inside sit above it. */
+.wk-card-link { text-decoration: none; }
+.wk-card-link::after { content: ''; position: absolute; inset: 0; }
+.wk-card-link:hover { color: var(--red); }
+.wk-line a, .wk-note a { position: relative; z-index: 2; text-decoration: none; border-bottom: 1px solid var(--silver); }
+.wk-line a:hover { color: var(--red); border-bottom-color: var(--red); }
 .wk-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--silver-2); }
 .wk-card:hover { transform: translateY(-2px); border-color: var(--silver); }
 .wk-n { font: 700 0.78rem var(--font-body); text-transform: uppercase; letter-spacing: 0.12em; color: var(--red); }
@@ -377,6 +387,8 @@ tbody th a, .sched td a { text-decoration: none; font-weight: 700; }
 .ladder-table td { text-align: center; }
 .ladder-cell { display: inline-block; font: 700 0.85rem var(--font-display); background: var(--red-soft); color: var(--red); padding: 0.15em 0.5em; border-radius: 6px; letter-spacing: 0.04em; }
 .ladder-cell.small { background: transparent; color: var(--ink-2); font: 500 0.78rem var(--font-body); }
+.ladder-cell a { text-decoration: none; }
+.ladder-cell a:hover { text-decoration: underline; }
 .sched tr.is-current td { background: var(--red-soft); }
 .sched tr.is-past td { color: var(--muted); }
 .sched small { color: var(--muted); }
@@ -534,8 +546,8 @@ body.is-run .topbar, body.is-run .footer { display: none; }
 .ov-k { font: 700 0.75rem var(--font-body); text-transform: uppercase; letter-spacing: 0.12em; color: var(--red); text-decoration: none; }
 .ov-k:hover { text-decoration: underline; }
 .ov-v { display: grid; gap: 0.15rem; font-size: 0.98rem; }
-.ov-item a { text-decoration: none; }
-.ov-item a:hover { text-decoration: underline; }
+.ov-item a { text-decoration: none; border-bottom: 1px solid var(--silver); }
+.ov-item a:hover { color: var(--red); border-bottom-color: var(--red); }
 .ov-foot { margin: 0.9rem 0 0; }
 @media (max-width: 520px) { .ov-row { grid-template-columns: 1fr; gap: 0.15rem; } }
 

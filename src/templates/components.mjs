@@ -194,6 +194,8 @@ export function challengeCard(ch, { rel = '', compact = false, note = '' } = {})
 
 /* ---------- week pieces ---------- */
 export const KIND_LABEL = { arrival: 'Arrival', drill: 'Drill', game: 'Game', scrimmage: 'Scrimmage', huddle: 'Huddle' };
+// Link to a specific activity on a week page (scrolls to that block).
+export const blockHref = (rel, weekN, blockIndex) => `${rel}weeks/${weekN}/#block-${blockIndex + 1}`;
 export const GROUPS = [
   { key: 'arrival', label: 'Arrival', lede: 'Grab a ball and get going while everyone arrives.' },
   { key: 'drill', label: 'Drills', lede: 'Small groups, lots of touches — one rung up the ladder from last week.' },
@@ -276,24 +278,30 @@ export function weekEquipment(week) {
 }
 
 export function weekCard(week, cal, rel = '', { current = false } = {}) {
-  const drills = week.blocks.filter((b) => b.kind === 'drill').map((b) => drillById[b.drill].short);
-  const games = week.blocks.filter((b) => b.kind === 'game').map((b) => gameById[b.game].name);
+  const drills = week.blocks
+    .map((b, i) => ({ b, i }))
+    .filter(({ b }) => b.kind === 'drill')
+    .map(({ b, i }) => `<a href="${blockHref(rel, week.n, i)}">${esc(drillById[b.drill].short)}</a>`);
+  const games = week.blocks
+    .map((b, i) => ({ b, i }))
+    .filter(({ b }) => b.kind === 'game')
+    .map(({ b, i }) => `<a href="${blockHref(rel, week.n, i)}">${esc(gameById[b.game].name)}</a>`);
   const g = cal.game;
   const gameLine = g
-    ? `${fmtDate(g.date, { weekday: true })} · ${esc(g.time)} · ${esc(g.title)}`
-    : cal.notes.find((n) => /no games/i.test(n)) ? 'No game — Labor Day weekend' : 'No game on the league schedule yet';
+    ? `<a href="${rel}schedule/#week-${week.n}">${fmtDate(g.date, { weekday: true })} · ${esc(g.time)} · ${esc(g.title)}</a>`
+    : cal.notes.find((n) => /no games/i.test(n)) ? 'No game — Labor Day weekend' : `<a href="${rel}schedule/#week-${week.n}">No game on the league schedule yet</a>`;
   const notes = cal.notes.filter((n) => !/no games/i.test(n));
-  return `<a class="wk-card${current ? ' is-current' : ''}" href="${rel}weeks/${week.n}/" data-week="${week.n}" data-start="${cal.start}" data-end="${cal.end}">
+  return `<article class="wk-card${current ? ' is-current' : ''}" data-week="${week.n}" data-start="${cal.start}" data-end="${cal.end}">
   <span class="wk-n">Week ${week.n}</span>
   <span class="wk-dates">${fmtRange(cal.start, cal.end)}</span>
-  <span class="wk-theme">${esc(week.theme)}</span>
+  <a class="wk-theme wk-card-link" href="${rel}weeks/${week.n}/">${esc(week.theme)}</a>
   <span class="wk-tag">${esc(week.tagline)}</span>
-  <span class="wk-line"><strong>Drills</strong> ${esc(drills.join(' · '))}</span>
-  <span class="wk-line"><strong>Games</strong> ${esc(games.join(' · '))}</span>
+  <span class="wk-line"><strong>Drills</strong> ${drills.join(' · ')}</span>
+  <span class="wk-line"><strong>Games</strong> ${games.join(' · ')}</span>
   <span class="wk-line wk-game"><strong>Game</strong> ${gameLine}</span>
   ${notes.length ? `<p class="wk-note">${esc(notes.join(' · '))}</p>` : ''}
   <span class="wk-current-badge">This week</span>
-</a>`;
+</article>`;
 }
 
 /* ---------- schedule pieces ---------- */

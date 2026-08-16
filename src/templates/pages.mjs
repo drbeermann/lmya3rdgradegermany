@@ -8,7 +8,7 @@ import { games, gameById } from '../data/games.mjs';
 import { challenges, challengeById } from '../data/home.mjs';
 import { rules } from '../data/rules.mjs';
 import {
-  icon, pill, levelCard, gameCard, challengeCard, weekCard, GROUPS,
+  icon, pill, levelCard, gameCard, challengeCard, weekCard, GROUPS, blockHref,
   blockTitle, KIND_LABEL, mmss, homeChallengeChip, videoCard, section, whenItems, eventLine,
 } from './components.mjs';
 
@@ -24,12 +24,13 @@ export function homePage({ rel }) {
     return {
       n: wk.n, theme: wk.theme, tagline: wk.tagline, goals: wk.goals || [], start: c.start, end: c.end,
       practice: evJson(c.practice), game: evJson(c.game), noGameNote: c.notes.find((n) => /no games/i.test(n)) || null,
-      drills: wk.blocks.filter((b) => b.kind === 'drill').map((b) => blockTitle(b)),
-      games: wk.blocks.filter((b) => b.kind === 'game').map((b) => gameById[b.game].name),
-      scrimmage: wk.blocks.find((b) => b.kind === 'scrimmage')?.title || '',
+      drills: wk.blocks.map((b, i) => ({ b, i })).filter(({ b }) => b.kind === 'drill').map(({ b, i }) => ({ title: blockTitle(b), href: blockHref(rel, wk.n, i) })),
+      games: wk.blocks.map((b, i) => ({ b, i })).filter(({ b }) => b.kind === 'game').map(({ b, i }) => ({ title: gameById[b.game].name, href: blockHref(rel, wk.n, i) })),
+      scrimmage: (() => { const i = wk.blocks.findIndex((b) => b.kind === 'scrimmage'); return { title: wk.blocks[i]?.title || '', href: blockHref(rel, wk.n, i) }; })(),
       home: challengeById[wk.home.challenge].name,
       homeId: wk.home.challenge,
       homeIcon: challengeById[wk.home.challenge].icon,
+      homeHref: `${rel}at-home/#ch-${wk.home.challenge}`,
     };
   });
 
@@ -93,9 +94,10 @@ export function homePage({ rel }) {
 }
 
 function heroFor(w, cal, rel) {
-  const drillBlocks = w.blocks.filter((b) => b.kind === 'drill');
-  const gameBlocks = w.blocks.filter((b) => b.kind === 'game');
-  const scrim = w.blocks.find((b) => b.kind === 'scrimmage');
+  const indexed = w.blocks.map((b, i) => ({ b, i }));
+  const drillBlocks = indexed.filter(({ b }) => b.kind === 'drill');
+  const gameBlocks = indexed.filter(({ b }) => b.kind === 'game');
+  const scrim = indexed.find(({ b }) => b.kind === 'scrimmage');
   return `<div class="wrap hero-inner">
     <div class="hero-text">
       <p class="eyebrow" id="hero-eyebrow">Week ${w.n} · ${fmtRange(cal.start, cal.end)}</p>
@@ -109,10 +111,10 @@ function heroFor(w, cal, rel) {
     </div>
     <div class="hero-plan" id="hero-plan">
       <div class="hp-goals"><span class="hp-k">This week we're working on</span><ul class="hp-goal-list">${(w.goals || []).map((g) => `<li>${esc(g)}</li>`).join('')}</ul></div>
-      <div class="hp-col"><span class="hp-k">Drills</span>${drillBlocks.map((b) => `<span class="hp-v">${esc(blockTitle(b))}</span>`).join('')}</div>
-      <div class="hp-col"><span class="hp-k">Games</span>${gameBlocks.map((b) => `<span class="hp-v">${esc(gameById[b.game].name)}</span>`).join('')}</div>
-      <div class="hp-col"><span class="hp-k">Scrimmage</span><span class="hp-v">${esc(scrim.title)}</span></div>
-      <div class="hp-col"><span class="hp-k">At home</span><span class="hp-v">${challengeById[w.home.challenge].icon} ${esc(challengeById[w.home.challenge].name)}</span></div>
+      <div class="hp-col"><span class="hp-k">Drills</span>${drillBlocks.map(({ b, i }) => `<a class="hp-v" href="${blockHref(rel, w.n, i)}">${esc(blockTitle(b))}</a>`).join('')}</div>
+      <div class="hp-col"><span class="hp-k">Games</span>${gameBlocks.map(({ b, i }) => `<a class="hp-v" href="${blockHref(rel, w.n, i)}">${esc(gameById[b.game].name)}</a>`).join('')}</div>
+      <div class="hp-col"><span class="hp-k">Scrimmage</span><a class="hp-v" href="${blockHref(rel, w.n, scrim.i)}">${esc(scrim.b.title)}</a></div>
+      <div class="hp-col"><span class="hp-k">At home</span><a class="hp-v" href="${rel}at-home/#ch-${w.home.challenge}">${challengeById[w.home.challenge].icon} ${esc(challengeById[w.home.challenge].name)}</a></div>
     </div>
   </div>
   <div class="hero-crest" aria-hidden="true">${crest({ size: 260, mono: true, className: 'crest crest-bg' })}</div>`;
@@ -145,15 +147,15 @@ export function weeksIndexPage({ rel }) {
               if (b.kind === 'scrimmage' && b.drills) for (const x of b.drills) if (x.drill === d.id) lv.push(...x.levels);
             }
             const u = [...new Set(lv)].sort((a, b) => a - b);
-            return `<td>${u.length ? `<span class="ladder-cell">${u.map((n) => `L${n}`).join(' ')}</span>` : ''}</td>`;
+            return `<td>${u.length ? `<span class="ladder-cell">${u.map((n) => `<a href="${rel}drills/${d.id}/#level-${n}">L${n}</a>`).join(' ')}</span>` : ''}</td>`;
           })
           .join('');
         return `<tr><th><a href="${rel}drills/${d.id}/">${esc(d.short)}</a></th>${cells}</tr>`;
       })
       .join('')}
-    <tr><th>Games</th>${weeks.map((wk) => `<td><span class="ladder-cell small">${wk.blocks.filter((b) => b.kind === 'game').map((b) => esc(gameById[b.game].name.split(' (')[0])).join('<br>')}</span></td>`).join('')}</tr>
-    <tr><th>Scrimmage focus</th>${weeks.map((wk) => `<td><span class="ladder-cell small">${esc(wk.blocks.find((b) => b.kind === 'scrimmage').title)}</span></td>`).join('')}</tr>
-    <tr><th>At home</th>${weeks.map((wk) => `<td><span class="ladder-cell small">${challengeById[wk.home.challenge].icon} ${esc(challengeById[wk.home.challenge].name)}</span></td>`).join('')}</tr>
+    <tr><th>Games</th>${weeks.map((wk) => `<td><span class="ladder-cell small">${wk.blocks.filter((b) => b.kind === 'game').map((b) => `<a href="${rel}games/${b.game}/">${esc(gameById[b.game].name.split(' (')[0])}</a>`).join('<br>')}</span></td>`).join('')}</tr>
+    <tr><th>Scrimmage focus</th>${weeks.map((wk) => `<td><span class="ladder-cell small"><a href="${blockHref(rel, wk.n, wk.blocks.findIndex((b) => b.kind === 'scrimmage'))}">${esc(wk.blocks.find((b) => b.kind === 'scrimmage').title)}</a></span></td>`).join('')}</tr>
+    <tr><th>At home</th>${weeks.map((wk) => `<td><span class="ladder-cell small"><a href="${rel}at-home/#ch-${wk.home.challenge}">${challengeById[wk.home.challenge].icon} ${esc(challengeById[wk.home.challenge].name)}</a></span></td>`).join('')}</tr>
     </tbody>
   </table></div>
 </section>`;
@@ -171,10 +173,7 @@ export function weekPage(w, { rel }) {
   const groups = GROUPS.map((g) => ({ ...g, blocks: w.blocks.filter((b) => b.kind === g.key) })).filter((g) => g.blocks.length);
 
   const overviewRows = groups.map((g) => {
-    const items = g.blocks.map((b) => {
-      const t = overviewTitle(b, rel);
-      return t;
-    });
+    const items = g.blocks.map((b) => overviewTitle(b, `#block-${w.blocks.indexOf(b) + 1}`));
     return `<div class="ov-row"><a class="ov-k" href="#${g.key}">${esc(g.label)}</a><div class="ov-v">${items.join('')}</div></div>`;
   });
   overviewRows.push(`<div class="ov-row"><a class="ov-k" href="${rel}at-home/#ch-${ch.id}">At home</a><div class="ov-v"><span class="ov-item">${ch.icon} ${esc(ch.name)}${w.home.note ? ` <span class="muted">— ${inline(w.home.note)}</span>` : ''}</span></div></div>`);
@@ -264,24 +263,24 @@ export function weekPage(w, { rel }) {
   return { body };
 }
 
-function overviewTitle(b, rel) {
+function overviewTitle(b, href) {
   switch (b.kind) {
     case 'arrival': {
       const fam = drillById[b.drill];
       const lv = fam.levels.find((l) => l.n === b.levels[0]);
-      return `<span class="ov-item"><a href="#block-${1}">${esc(lv.name)}</a></span>`;
+      return `<span class="ov-item"><a href="${href}">${esc(lv.name)}</a></span>`;
     }
     case 'drill': {
       const fam = drillById[b.drill];
       const names = b.levels.map((n) => fam.levels.find((l) => l.n === n)?.name).filter(Boolean);
-      return `<span class="ov-item"><strong>${esc(fam.short)}:</strong> ${esc(names.join(' → '))}</span>`;
+      return `<span class="ov-item"><a href="${href}"><strong>${esc(fam.short)}:</strong> ${esc(names.join(' → '))}</a></span>`;
     }
     case 'game':
-      return `<span class="ov-item"><strong>${esc(gameById[b.game].name)}</strong> <span class="muted">— ${esc(gameById[b.game].hook)}</span></span>`;
+      return `<span class="ov-item"><a href="${href}"><strong>${esc(gameById[b.game].name)}</strong></a> <span class="muted">— ${esc(gameById[b.game].hook)}</span></span>`;
     case 'scrimmage':
-      return `<span class="ov-item"><strong>${esc(b.title)}</strong></span>`;
+      return `<span class="ov-item"><a href="${href}"><strong>${esc(b.title)}</strong></a></span>`;
     case 'huddle':
-      return `<span class="ov-item">One question, one cheer, the at-home challenge.</span>`;
+      return `<span class="ov-item"><a href="${href}">One question, one cheer, the at-home challenge.</a></span>`;
   }
   return '';
 }
